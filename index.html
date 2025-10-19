@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naimish Dwivedi | Full Stack Developer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <!-- Trig.js -->
+    <script src="https://cdn.jsdelivr.net/npm/trig-js/src/trig.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #ffffff;
+        color: #000000;
+        overflow-x: hidden;
+        width: 100vw;
+      }
+
+      .section-title {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 2rem;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50%;
+        height: 2px;
+        background-color: #000000;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.5rem;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #000000;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 1.5rem;
+        width: 2px;
+        height: calc(100% + 1rem);
+        background-color: #e5e5e5;
+      }
+
+      .timeline-item:last-child::after {
+        display: none;
+      }
+
+      .project-card {
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: #fafafa;
+        border: 1px solid #e5e5e5;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .project-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-color: #000000;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: #f5f5f5;
+        transition: all 0.3s ease;
+        border: 1px solid #e5e5e5;
+      }
+
+      .contact-icon:hover {
+        background: #000000;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .skill-icon {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        margin: 0 auto 1rem;
+        border: 1px solid #e5e5e5;
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      .skill-icon.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .skill-icon:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-color: #000000;
+      }
+
+      .resume-btn {
+        transition: all 0.3s ease;
+        background: #000000;
+        color: white;
+      }
+
+      .resume-btn:hover {
+        background: #333333;
+        transform: translateY(-2px);
+      }
+
+      .tech-tag {
+        display: inline-block;
+        background: #f0f0f0;
+        color: #000000;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        margin: 0.25rem;
+        border: 1px solid #e0e0e0;
+      }
+
+      .profile-image {
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .section-divider {
+        height: 1px;
+        background: #e5e5e5;
+        margin: 3rem 0;
+      }
+
+      .animate-element {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+      }
+
+      .animate-element.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive improvements */
+      @media (max-width: 768px) {
+        .container {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        .section-title {
+          font-size: 1.75rem;
+        }
+
+        .skill-icon {
+          width: 60px;
+          height: 60px;
+        }
+
+        .skill-icon i {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .project-card {
+          margin-bottom: 1.5rem;
+        }
+
+        .timeline-item {
+          padding-left: 1.5rem;
+        }
+
+        .contact-icon {
+          width: 45px;
+          height: 45px;
+        }
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm border-b border-gray-200"
+    >
+      <div
+        class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="text-xl font-bold text-black">Naimish Dwivedi</a>
+        <div class="flex items-center space-x-4">
+          <a
+            href="/Naimish-Dwivedi Resume.pdf"
+            class="resume-btn px-4 py-2 rounded-lg font-medium text-sm sm:text-base"
+          >
+            Download Resume
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div
+          class="flex flex-col lg:flex-row items-center justify-between gap-8"
+        >
+          <!-- Text Content - 60% -->
+          <div class="lg:w-3/5">
+            <div class="mb-2 text-gray-600 font-medium">Hello, I'm</div>
+            <h1
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4"
+            >
+              Naimish Dwivedi
+            </h1>
+            <h2 class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-6">
+              Full Stack Developer
+            </h2>
+            <p
+              class="text-base sm:text-lg mb-6 sm:mb-8 text-gray-600 max-w-2xl"
+            >
+              Computer Science undergraduate with hands-on experience in
+              full-stack development and modern web technologies. Eager to apply
+              skills in building scalable web applications and contribute to a
+              dynamic development team.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#contact"
+                class="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition text-center"
+                >Contact Me</a
+              >
+              <a
+                href="#projects"
+                class="border border-black text-black px-6 py-3 rounded-lg font-medium hover:bg-black hover:text-white transition text-center"
+                >View Projects</a
+              >
+            </div>
+          </div>
+
+          <!-- Image Content - 40% -->
+          <div class="lg:w-2/5 flex justify-center">
+            <div class="w-full max-w-sm">
+              <img
+                src="naimish-dwivedi-profile-image.png"
+                alt="Naimish Dwivedi"
+                class="w-full h-auto profile-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-20 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2
+          class="text-2xl sm:text-3xl font-bold section-title text-black animate-element"
+        >
+          About Me
+        </h2>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div class="lg:col-span-2 animate-element">
+            <p class="text-base sm:text-lg mb-4 sm:mb-6 text-gray-600">
+              I'm a Computer Science undergraduate with a passion for creating
+              efficient, scalable web applications using modern technologies. My
+              journey in web development has equipped me with expertise in both
+              frontend and backend technologies.
+            </p>
+            <p class="text-base sm:text-lg mb-4 sm:mb-6 text-gray-600">
+              I enjoy tackling complex problems and transforming ideas into
+              functional, user-friendly applications. With a strong foundation
+              in full-stack development, I'm always eager to learn new
+              technologies and methodologies.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-6 sm:mt-8">
+              <div
+                class="bg-white px-4 py-3 rounded-lg shadow-sm border border-gray-200"
+              >
+                <span class="font-medium text-black">Email:</span>
+                <span class="ml-2">naimishdwivedi1307@gmail.com</span>
+              </div>
+              <div
+                class="bg-white px-4 py-3 rounded-lg shadow-sm border border-gray-200"
+              >
+                <span class="font-medium text-black">Phone:</span>
+                <span class="ml-2">9594715335</span>
+              </div>
+            </div>
+          </div>
+          <div class="animate-element">
+            <h3 class="text-xl font-semibold mb-4 text-black">Education</h3>
+            <div class="space-y-4 sm:space-y-6">
+              <div
+                class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200"
+              >
+                <h4 class="font-bold text-lg text-black">
+                  B.Sc. in Computer Science
+                </h4>
+                <p class="text-gray-700">University of Mumbai</p>
+                <p class="text-gray-500 text-sm sm:text-base">
+                  July 2022 – May 2025 | CGPA: 9.98
+                </p>
+              </div>
+              <div
+                class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-200"
+              >
+                <h4 class="font-bold text-lg text-black">
+                  HSC from CBSE Board
+                </h4>
+                <p class="text-gray-700">R.N. Public School</p>
+                <p class="text-gray-500 text-sm sm:text-base">
+                  May 2020 – June 2021 | Percentage: 95%
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 sm:py-20 bg-white">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2
+          class="text-2xl sm:text-3xl font-bold section-title text-black animate-element"
+        >
+          Technical Skills
+        </h2>
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
+        >
+          <div class="text-center">
+            <div class="skill-icon">
+              <i class="fab fa-php text-2xl sm:text-3xl text-black"></i>
+            </div>
+            <h3 class="font-semibold text-black text-sm sm:text-base">PHP</h3>
+          </div>
+          <div class="text-center">
+            <div class="skill-icon">
+              <i class="fab fa-js-square text-2xl sm:text-3xl text-black"></i>
+            </div>
+            <h3 class="font-semibold text-black text-sm sm:text-base">
+              JavaScript
+            </h3>
+          </div>
+          <div class="text-center">
+            <div class="skill-icon">
+              <i class="fas fa-database text-2xl sm:text-3xl text-black"></i>
+            </div>
+            <h3 class="font-semibold text-black text-sm sm:text-base">SQL</h3>
+          </div>
+          <div class="text-center">
+            <div class="skill-icon">
+              <i class="fab fa-laravel text-2xl sm:text-3xl text-black"></i>
+            </div>
+            <h3 class="font-semibold text-black text-sm sm:text-base">
+              Laravel
+            </h3>
+          </div>
+          <div class="text-center">
+            <div class="skill-icon">
+              <i class="fas fa-fire text-2xl sm:text-3xl text-black"></i>
+            </div>
+            <h3 class="font-semibold text-black text-sm sm:text-base">
+              CodeIgniter
+            </h3>
+          </div>
+          <div class="text-center">
+            <div class="skill-icon">
+              <i class="fab fa-react text-2xl sm:text-3xl text-black"></i>
+            </div>
+            <h3 class="font-semibold text-black text-sm sm:text-base">
+              MERN Stack
+            </h3>
+          </div>
+          <div class="text-center">
+            <div class="skill-icon">
+              <i class="fab fa-css3-alt text-2xl sm:text-3xl text-black"></i>
+            </div>
+            <h3 class="font-semibold text-black text-sm sm:text-base">
+              Tailwind CSS
+            </h3>
+          </div>
+          <div class="text-center">
+            <div class="skill-icon">
+              <i class="fab fa-git-alt text-2xl sm:text-3xl text-black"></i>
+            </div>
+            <h3 class="font-semibold text-black text-sm sm:text-base">
+              Git & GitHub
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 sm:py-20 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2
+          class="text-2xl sm:text-3xl font-bold section-title text-black animate-element"
+        >
+          Work Experience
+        </h2>
+        <div class="max-w-3xl mx-auto">
+          <div class="timeline-item animate-element">
+            <h3 class="text-lg sm:text-xl font-bold text-black">
+              Full Stack Developer
+            </h3>
+            <p class="text-gray-700 font-medium">
+              Positive Quadrant Technologies LLP
+            </p>
+            <p class="text-gray-500 mb-4 text-sm sm:text-base">
+              July 2025 – Present
+            </p>
+            <ul
+              class="list-disc pl-5 space-y-2 text-gray-600 text-sm sm:text-base"
+            >
+              <li>
+                Developed and maintained Techupgrad website using Laravel,
+                Tailwind, GSAP and AOS for animations with PostgreSQL database
+              </li>
+              <li>
+                Contributed to development of Techupgrad Junior, a responsive
+                educational platform
+              </li>
+              <li>
+                Built a scalable CRM using Laravel and PostgreSQL, integrating
+                Email and WhatsApp APIs
+              </li>
+              <li>
+                Implemented queue-based background jobs for bulk messaging and
+                role-based access control
+              </li>
+            </ul>
+          </div>
+          <div class="timeline-item animate-element">
+            <h3 class="text-lg sm:text-xl font-bold text-black">
+              Full Stack Developer Intern
+            </h3>
+            <p class="text-gray-700 font-medium">
+              Positive Quadrant Technologies LLP
+            </p>
+            <p class="text-gray-500 mb-4 text-sm sm:text-base">
+              July 2024 – July 2025
+            </p>
+            <ul
+              class="list-disc pl-5 space-y-2 text-gray-600 text-sm sm:text-base"
+            >
+              <li>
+                Developed and maintained the company's official website using
+                CodeIgniter, Bootstrap, and AOS
+              </li>
+              <li>
+                Contributed to development of Arius Learning, a responsive
+                educational platform
+              </li>
+              <li>
+                Built and optimized Mammybeans Food website using Laravel,
+                Bootstrap, AOS, and PostgreSQL
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 sm:py-20 bg-white">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2
+          class="text-2xl sm:text-3xl font-bold section-title text-black animate-element"
+        >
+          Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Project 1 -->
+          <div class="project-card rounded-lg">
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <div
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-black text-white rounded-lg mb-4"
+              >
+                <i class="fas fa-globe text-lg sm:text-xl"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold mb-2 text-black">
+                Positive Quadrant
+              </h3>
+              <p class="text-gray-600 mb-4 flex-grow text-sm sm:text-base">
+                Developed and maintained the company's official website using
+                CodeIgniter, Bootstrap, and AOS for animations.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tech-tag">CodeIgniter</span>
+                <span class="tech-tag">Bootstrap</span>
+                <span class="tech-tag">AOS</span>
+              </div>
+              <a
+                href="https://www.positivequadrant.in/"
+                target="_blank"
+                class="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition text-center text-sm sm:text-base"
+              >
+                View Live <i class="fas fa-external-link-alt ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card rounded-lg">
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <div
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-black text-white rounded-lg mb-4"
+              >
+                <i class="fas fa-graduation-cap text-lg sm:text-xl"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold mb-2 text-black">
+                Arius Learning
+              </h3>
+              <p class="text-gray-600 mb-4 flex-grow text-sm sm:text-base">
+                Contributed to development of a responsive educational platform
+                using CodeIgniter, Bootstrap, and phpMyAdmin.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tech-tag">CodeIgniter</span>
+                <span class="tech-tag">Bootstrap</span>
+                <span class="tech-tag">phpMyAdmin</span>
+              </div>
+              <a
+                href="https://ariuslearning.com/"
+                target="_blank"
+                class="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition text-center text-sm sm:text-base"
+              >
+                View Live <i class="fas fa-external-link-alt ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card rounded-lg">
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <div
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-black text-white rounded-lg mb-4"
+              >
+                <i class="fas fa-laptop-code text-lg sm:text-xl"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold mb-2 text-black">
+                Techupgrad
+              </h3>
+              <p class="text-gray-600 mb-4 flex-grow text-sm sm:text-base">
+                Developed and maintained website using Laravel, Tailwind, GSAP
+                and AOS for animations with PostgreSQL database.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">Tailwind</span>
+                <span class="tech-tag">GSAP</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <a
+                href="http://techupgrad.in/"
+                target="_blank"
+                class="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition text-center text-sm sm:text-base"
+              >
+                View Live <i class="fas fa-external-link-alt ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card rounded-lg">
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <div
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-black text-white rounded-lg mb-4"
+              >
+                <i class="fas fa-child text-lg sm:text-xl"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold mb-2 text-black">
+                Techupgrad Junior
+              </h3>
+              <p class="text-gray-600 mb-4 flex-grow text-sm sm:text-base">
+                Contributed to development of a responsive educational platform
+                using Laravel, Tailwind, GSAP and AOS.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">Tailwind</span>
+                <span class="tech-tag">GSAP</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <a
+                href="https://techupgrad.in/junior"
+                target="_blank"
+                class="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition text-center text-sm sm:text-base"
+              >
+                View Live <i class="fas fa-external-link-alt ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="project-card rounded-lg">
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <div
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-black text-white rounded-lg mb-4"
+              >
+                <i class="fas fa-utensils text-lg sm:text-xl"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold mb-2 text-black">
+                Mammybeans Food
+              </h3>
+              <p class="text-gray-600 mb-4 flex-grow text-sm sm:text-base">
+                Built and optimized a food website using Laravel, Bootstrap,
+                AOS, and PostgreSQL, with a focus on smooth UI/UX.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">Bootstrap</span>
+                <span class="tech-tag">AOS</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <a
+                href="https://www.mammybeans.com/"
+                target="_blank"
+                class="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition text-center text-sm sm:text-base"
+              >
+                View Live <i class="fas fa-external-link-alt ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="project-card rounded-lg">
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <div
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-black text-white rounded-lg mb-4"
+              >
+                <i class="fas fa-cogs text-lg sm:text-xl"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold mb-2 text-black">
+                CRM Pro
+              </h3>
+              <p class="text-gray-600 mb-4 flex-grow text-sm sm:text-base">
+                Built a scalable CRM using Laravel and PostgreSQL, integrating
+                Email and WhatsApp APIs with role-based access control.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">API Integration</span>
+                <span class="tech-tag">RBAC</span>
+              </div>
+              <a
+                href="#"
+                class="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition text-center text-sm sm:text-base"
+              >
+                View Details <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 sm:py-20 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2
+          class="text-2xl sm:text-3xl font-bold section-title text-black animate-element"
+        >
+          Get In Touch
+        </h2>
+        <div class="max-w-4xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
+            <div class="animate-element">
+              <h3 class="text-xl font-semibold mb-6 text-black">
+                Contact Information
+              </h3>
+              <div class="space-y-4 sm:space-y-6">
+                <div class="flex items-center space-x-4">
+                  <div class="contact-icon">
+                    <i class="fas fa-envelope text-black"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-black">Email</h4>
+                    <p class="text-gray-600">naimishdwivedi1307@gmail.com</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                  <div class="contact-icon">
+                    <i class="fas fa-phone text-black"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-black">Phone</h4>
+                    <p class="text-gray-600">9594715335</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="animate-element">
+              <h3 class="text-xl font-semibold mb-6 text-black">
+                Let's Connect
+              </h3>
+              <p class="text-base sm:text-lg mb-4 sm:mb-6 text-gray-600">
+                I'm always open to discussing new opportunities, collaborations,
+                or just having a friendly chat about technology and development.
+              </p>
+              <p class="text-base sm:text-lg mb-4 sm:mb-6 text-gray-600">
+                Feel free to reach out through any of the contact methods
+                listed, and I'll get back to you as soon as possible.
+              </p>
+              <div class="flex space-x-4">
+                <a
+                  href="https://www.linkedin.com/in/naimish-dwivedi-5aa083265/"
+                  class="contact-icon"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a
+                  href="https://github.com/NaimishDwivedi"
+                  class="contact-icon"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <a
+                  href="mailto:naimishdwivedi1307@gmail.com"
+                  class="contact-icon"
+                >
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white text-gray-600 py-8 border-t border-gray-200">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <p class="text-xl font-bold text-black">Naimish Dwivedi</p>
+            <p class="text-gray-500">Full Stack Developer</p>
+          </div>
+          <div class="flex space-x-6">
+            <a
+              href="https://www.linkedin.com/in/naimish-dwivedi-5aa083265/"
+              class="text-gray-500 hover:text-black transition"
+            >
+              <i class="fab fa-linkedin-in text-xl"></i>
+            </a>
+            <a
+              href="https://github.com/NaimishDwivedi"
+              class="text-gray-500 hover:text-black transition"
+            >
+              <i class="fab fa-github text-xl"></i>
+            </a>
+            <a
+              href="mailto:naimishdwivedi1307@gmail.com"
+              class="text-gray-500 hover:text-black transition"
+            >
+              <i class="fas fa-envelope text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-200 mt-8 pt-6 text-center text-gray-500"
+        >
+          <p>&copy; 2023 Naimish Dwivedi. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll -->
+    <script>
+      // Initialize Lenis for smooth scrolling
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: "vertical",
+        gestureDirection: "vertical",
+        smooth: true,
+        smoothTouch: false,
+        touchMultiplier: 2,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            lenis.scrollTo(targetElement, {
+              offset: -80,
+            });
+          }
+        });
+      });
+
+      // Trig.js animations
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize Trig.js
+        const trig = new Trig();
+
+        // Animate elements when they come into view
+        const animateOnScroll = function () {
+          const elements = document.querySelectorAll(
+            ".animate-element, .project-card, .skill-icon"
+          );
+
+          elements.forEach((element) => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 100;
+
+            if (elementTop < window.innerHeight - elementVisible) {
+              element.classList.add("visible");
+            }
+          });
+        };
+
+        // Initial check on page load
+        animateOnScroll();
+
+        // Check on scroll
+        window.addEventListener("scroll", animateOnScroll);
+
+        // Stagger animation for skill icons
+        const skillIcons = document.querySelectorAll(".skill-icon");
+        skillIcons.forEach((icon, index) => {
+          icon.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Stagger animation for project cards
+        const projectCards = document.querySelectorAll(".project-card");
+        projectCards.forEach((card, index) => {
+          card.style.transitionDelay = `${index * 0.1}s`;
+        });
+      });
+    </script>
+  </body>
+</html>
